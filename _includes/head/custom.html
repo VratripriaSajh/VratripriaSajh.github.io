@@ -1,1 +1,19 @@
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var currentPath = window.location.pathname.replace(/index\\.html$/, '').replace(/\\/+$|^$/, '');
+  document.querySelectorAll('.masthead__menu a, .greedy-nav a').forEach(function (link) {
+    var linkPath;
+    try {
+      linkPath = new URL(link.href, window.location.origin).pathname.replace(/index\\.html$/, '').replace(/\\/+$|^$/, '');
+    } catch (error) {
+      return;
+    }
+    if (linkPath === currentPath) {
+      link.setAttribute('aria-current', 'page');
+      link.classList.add('is-current-page');
+    }
+  });
+});
+</script>
