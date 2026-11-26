@@ -1,19 +1,37 @@
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var currentPath = window.location.pathname.replace(/index\\.html$/, '').replace(/\\/+$|^$/, '');
-  document.querySelectorAll('.masthead__menu a, .greedy-nav a').forEach(function (link) {
-    var linkPath;
-    try {
-      linkPath = new URL(link.href, window.location.origin).pathname.replace(/index\\.html$/, '').replace(/\\/+$|^$/, '');
-    } catch (error) {
-      return;
+(function () {
+  function markCurrentPage() {
+    function cleanPath(path) {
+      path = path.split('?')[0].split('#')[0];
+      if (path.endsWith('/index.html')) path = path.slice(0, -10);
+      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
+      return path || '/';
     }
-    if (linkPath === currentPath) {
-      link.setAttribute('aria-current', 'page');
-      link.classList.add('is-current-page');
-    }
-  });
-});
+
+    var currentPath = cleanPath(window.location.pathname);
+    document.querySelectorAll('nav a[href]').forEach(function (link) {
+      var linkPath;
+      try {
+        linkPath = cleanPath(new URL(link.getAttribute('href'), window.location.origin).pathname);
+      } catch (error) {
+        return;
+      }
+      if (linkPath === currentPath) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('is-current-page');
+      } else {
+        link.removeAttribute('aria-current');
+        link.classList.remove('is-current-page');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', markCurrentPage);
+  } else {
+    markCurrentPage();
+  }
+})();
 </script>
