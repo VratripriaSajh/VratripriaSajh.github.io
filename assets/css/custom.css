@@ -13,3 +13,40 @@
   text-decoration-thickness: 2px !important;
   text-underline-offset: 7px !important;
 }
+
+
+/* Full-screen profile photo lightbox */
+.profile-lightbox-trigger { display: inline-block; cursor: zoom-in; }
+.profile-lightbox-trigger img { cursor: zoom-in; }
+.profile-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, .92);
+}
+.profile-lightbox.is-open { display: flex; }
+.profile-lightbox img {
+  display: block;
+  max-width: 92vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 8px 36px rgba(0, 0, 0, .5);
+}
+.profile-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 22px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 42px;
+  line-height: 1;
+  cursor: pointer;
+}
+body.profile-lightbox-active { overflow: hidden; }
