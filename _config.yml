@@ -1,9 +1,9 @@
 title: "Vratripriya Sajh"
 name: "Vratripriya Sajh"
 description: "Building Engineering & Construction Management student at RUET"
-url: ""
+url: "https://VratripriaSajh.github.io"
 baseurl: ""
-remote_theme: "academicpages/academicpages.github.io"
+remote_theme: "academicpages/academicpages.github.io@v0.8.4"
 minimal_mistakes_skin: "default"
 search: false
 markdown: kramdown
