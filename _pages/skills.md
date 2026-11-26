@@ -2,6 +2,7 @@
 title: "Skills & Interests"
 permalink: /skills/
 author_profile: true
+layout: single
 ---
 
 ## Computational Experience
