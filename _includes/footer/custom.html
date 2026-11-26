@@ -1,0 +1,40 @@
+<div class="profile-lightbox" id="profile-lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged profile picture">
+  <button class="profile-lightbox-close" type="button" aria-label="Close enlarged profile picture">&times;</button>
+  <img src="" alt="">
+</div>
+<script>
+(function () {
+  var overlay = document.getElementById('profile-lightbox');
+  if (!overlay || overlay.dataset.ready === 'true') return;
+  overlay.dataset.ready = 'true';
+
+  var enlarged = overlay.querySelector('img');
+  var closeButton = overlay.querySelector('.profile-lightbox-close');
+
+  function closeLightbox() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('hidden', '');
+    document.body.classList.remove('profile-lightbox-active');
+    enlarged.removeAttribute('src');
+  }
+
+  document.addEventListener('click', function (event) {
+    var trigger = event.target.closest && event.target.closest('.profile-lightbox-trigger');
+    if (trigger) {
+      event.preventDefault();
+      enlarged.src = trigger.href;
+      var thumbnail = trigger.querySelector('img');
+      enlarged.alt = thumbnail ? thumbnail.alt : 'Profile picture';
+      overlay.removeAttribute('hidden');
+      overlay.classList.add('is-open');
+      document.body.classList.add('profile-lightbox-active');
+    } else if (event.target === overlay || event.target === closeButton) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+  });
+})();
+</script>
