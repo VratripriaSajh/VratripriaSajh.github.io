@@ -19,3 +19,5 @@ January 2022 – Present
 ## Secondary School Certificate (SSC)
 **Khoksa Janipur Government High School** · Science  
 2019 · GPA: 5.00 out of 5.00
+
+<!-- Rebuild education page with the site-wide profile photo lightbox. -->
