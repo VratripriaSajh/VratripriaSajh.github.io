@@ -1,37 +1,54 @@
-<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}?v=3">
 
 <script>
 (function () {
-  function markCurrentPage() {
-    function cleanPath(path) {
-      path = path.split('?')[0].split('#')[0];
-      if (path.endsWith('/index.html')) path = path.slice(0, -10);
-      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
-      return path || '/';
-    }
+  function normalize(path) {
+    path = (path || '/').split('?')[0].split('#')[0];
+    path = path.replace(/index\\.html$/i, '');
+    path = path.replace(/\\.html$/i, '');
+    path = path.replace(/\\/+/g, '/');
+    if (path.charAt(0) !== '/') path = '/' + path;
+    if (path.length > 1) path = path.replace(/\\/+$/, '');
+    return path || '/';
+  }
 
-    var currentPath = cleanPath(window.location.pathname);
-    document.querySelectorAll('nav a[href]').forEach(function (link) {
-      var linkPath;
+  function highlightCurrentNavigation() {
+    var current = normalize(window.location.pathname);
+    var links = document.querySelectorAll('.masthead a, .greedy-nav a, nav a');
+    links.forEach(function (link) {
+      var rawHref = link.getAttribute('href');
+      if (!rawHref) return;
+      var destination;
       try {
-        linkPath = cleanPath(new URL(link.getAttribute('href'), window.location.origin).pathname);
+        destination = normalize(new URL(rawHref, window.location.href).pathname);
       } catch (error) {
         return;
       }
-      if (linkPath === currentPath) {
+
+      var active = destination === current;
+      if (active) {
         link.setAttribute('aria-current', 'page');
+        link.style.setProperty('color', '#176b87', 'important');
+        link.style.setProperty('font-weight', '700', 'important');
+        link.style.setProperty('text-decoration', 'underline', 'important');
+        link.style.setProperty('text-decoration-thickness', '2px', 'important');
+        link.style.setProperty('text-underline-offset', '7px', 'important');
         link.classList.add('is-current-page');
       } else {
         link.removeAttribute('aria-current');
         link.classList.remove('is-current-page');
+        ['color', 'font-weight', 'text-decoration', 'text-decoration-thickness', 'text-underline-offset'].forEach(function (property) {
+          link.style.removeProperty(property);
+        });
       }
     });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', markCurrentPage);
+    document.addEventListener('DOMContentLoaded', highlightCurrentNavigation);
   } else {
-    markCurrentPage();
+    highlightCurrentNavigation();
   }
+  window.addEventListener('pageshow', highlightCurrentNavigation);
 })();
 </script>
