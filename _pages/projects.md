@@ -2,6 +2,7 @@
 title: "Selected Projects"
 permalink: /projects/
 author_profile: true
+layout: single
 ---
 
 These academic design projects showcase work in building design, interior planning, and landscape design.
