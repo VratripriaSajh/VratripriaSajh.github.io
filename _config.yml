@@ -15,7 +15,7 @@ plugins:
   - jekyll-feed
 author:
   name: "Vratripriya Sajh"
-  avatar: "/assets/images/profile.jpg"
+  avatar: "https://vratripriasajh.github.io/assets/images/profile.jpg"
   bio: "Final-year undergraduate student in Building Engineering & Construction Management at RUET."
   location: "Rajshahi, Bangladesh"
   email: "sajhvratripriya@gmail.com"
