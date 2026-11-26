@@ -1,0 +1,39 @@
+title: "Vratripriya Sajh"
+name: "Vratripriya Sajh"
+description: "Building Engineering & Construction Management student at RUET"
+url: ""
+baseurl: ""
+remote_theme: "academicpages/academicpages.github.io"
+minimal_mistakes_skin: "default"
+search: false
+markdown: kramdown
+permalink: /:categories/:title/
+include: ["_pages"]
+plugins:
+  - jekyll-include-cache
+  - jekyll-sitemap
+  - jekyll-feed
+author:
+  name: "Vratripriya Sajh"
+  avatar: "/assets/images/profile.jpg"
+  bio: "Final-year undergraduate student in Building Engineering & Construction Management at RUET."
+  location: "Rajshahi, Bangladesh"
+  email: "sajhvratripriya@gmail.com"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:sajhvratripriya@gmail.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/vratripriya-sajh-585981316"
+collections:
+  portfolio:
+    output: true
+    permalink: /portfolio/:path/
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
