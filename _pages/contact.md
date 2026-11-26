@@ -2,6 +2,7 @@
 title: "Contact"
 permalink: /contact/
 author_profile: true
+layout: single
 ---
 
 I'd be glad to connect about building engineering, structural analysis, construction management, academic projects, or collaboration.
