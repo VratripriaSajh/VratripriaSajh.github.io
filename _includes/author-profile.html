@@ -13,7 +13,7 @@
       {% assign profile_image = author.avatar | prepend: "/images/" | prepend: base_path %}
     {% endif %}
     <a class="profile-lightbox-trigger" href="{{ profile_image }}" aria-label="View enlarged profile picture">
-      <img src="{{ profile_image }}" class="author__avatar-image" alt="{{ author.name }}">
+      <img src="{{ profile_image }}" class="author__avatar" alt="{{ author.name }}">
     </a>
   </div>
 
@@ -167,7 +167,7 @@
 </div>
 
 
-<div class="profile-lightbox" id="profile-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged profile picture">
+<div class="profile-lightbox" id="profile-lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged profile picture">
   <button class="profile-lightbox-close" type="button" aria-label="Close enlarged profile picture">&times;</button>
   <img src="" alt="">
 </div>
@@ -181,6 +181,7 @@
 
   function closeLightbox() {
     overlay.classList.remove('is-open');
+    overlay.setAttribute('hidden', '');
     document.body.classList.remove('profile-lightbox-active');
     enlarged.removeAttribute('src');
   }
@@ -191,6 +192,7 @@
       event.preventDefault();
       enlarged.src = trigger.href;
       enlarged.alt = trigger.querySelector('img') ? trigger.querySelector('img').alt : 'Profile picture';
+      overlay.removeAttribute('hidden');
       overlay.classList.add('is-open');
       document.body.classList.add('profile-lightbox-active');
     } else if (event.target === overlay || event.target === closeButton) {
