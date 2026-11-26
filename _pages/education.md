@@ -2,6 +2,7 @@
 title: "Education"
 permalink: /education/
 author_profile: true
+layout: single
 ---
 
 ## Bachelor of Science in Building Engineering & Construction Management
