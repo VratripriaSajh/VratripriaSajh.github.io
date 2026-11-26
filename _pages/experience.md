@@ -2,6 +2,7 @@
 title: "Experience & Leadership"
 permalink: /experience/
 author_profile: true
+layout: single
 ---
 
 ## Industrial Attachment
